@@ -13,13 +13,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeHttpRequests((authz) -> authz
-                        .antMatchers("/").permitAll()
+                        .antMatchers("/**").permitAll()//since it's for a test I'm disabling authentication
                 )
                 .formLogin(withDefaults());
         return http.build();
     }
-
-
 
 }
